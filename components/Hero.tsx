@@ -72,13 +72,13 @@ export default function Hero() {
     <section
       id="top"
       ref={rootRef}
-      className="relative min-h-[100svh] w-full overflow-hidden tech-grid"
+      className="relative min-h-[88svh] w-full overflow-hidden tech-grid"
     >
       {/* Glow e vinheta */}
       <div className="pointer-events-none absolute inset-0 glow-brand opacity-60" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink" />
 
-      <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pt-24 md:px-10 lg:grid-cols-2">
+      <div className="relative mx-auto grid min-h-[88svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-12 pt-24 md:px-10 lg:grid-cols-2">
         <div className="max-w-2xl">
           <div className="hero-sub mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-mist backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-brand" />
