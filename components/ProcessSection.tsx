@@ -5,8 +5,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { steps } from "@/lib/site";
 
-// Sequência gerada com Nano Banana Pro: a mesma roda, no mesmo ângulo 3/4 e
-// iluminação azul da hero, atravessando as 10 etapas do conserto.
+// Sequência gerada com Nano Banana Pro em estilo documental realista:
+// a mesma roda, no mesmo ângulo, fotografada "na oficina" em cada etapa.
 const stepSrc = (n: number) => `/process/etapa-${String(n).padStart(2, "0")}.jpg`;
 
 export default function ProcessSection() {
