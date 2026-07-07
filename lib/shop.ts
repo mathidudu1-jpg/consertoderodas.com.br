@@ -164,58 +164,21 @@ export type ShopData = {
   version: number;
 };
 
-const KEY = "rll_shop_v1";
-const techs = ["Robson", "Matheus", "Luiz Jr.", "André"];
+const KEY = "rll_shop_v2";
+const VERSION = 2;
+export const techs = ["Robson", "Matheus", "Luiz Jr.", "André"];
 
-function iso(daysFromNow: number, h = 9, m = 0) {
-  const d = new Date();
-  d.setDate(d.getDate() + daysFromNow);
-  d.setHours(h, m, 0, 0);
-  return d.toISOString();
-}
-function ymd(daysFromNow: number) {
-  const d = new Date();
-  d.setDate(d.getDate() + daysFromNow);
-  return d.toISOString().slice(0, 10);
-}
-
+// Painel começa zerado — os agendamentos entram pelo site e as ordens/clientes
+// são cadastrados manualmente no próprio painel.
 function seed(): ShopData {
-  const customers: Customer[] = [
-    { id: "c1", name: "Carlos Menezes", phone: "(41) 99812-4471", vehicle: "Honda Civic 2019", plate: "BEA1D23", since: iso(-420) },
-    { id: "c2", name: "Fernanda Lima", phone: "(41) 99640-1180", vehicle: "Jeep Compass 2021", plate: "RTC4E88", since: iso(-260) },
-    { id: "c3", name: "Rodrigo Alves", phone: "(41) 98123-9902", vehicle: "VW Golf GTI 2018", plate: "AQK2F19", since: iso(-190) },
-    { id: "c4", name: "Patrícia Souza", phone: "(41) 99551-7723", vehicle: "Toyota Corolla 2020", plate: "PWM7G40", since: iso(-95) },
-    { id: "c5", name: "Bruno Tavares", phone: "(41) 99277-3351", vehicle: "BMW 320i 2022", plate: "LKD9H07", since: iso(-60) },
-    { id: "c6", name: "Aline Ferreira", phone: "(41) 98410-2265", vehicle: "Hyundai HB20 2019", plate: "FGT3J55", since: iso(-30) },
-    { id: "c7", name: "Marcelo Nunes", phone: "(41) 99188-6640", vehicle: "Audi A3 2021", plate: "NBR6K12", since: iso(-12) },
-    { id: "c8", name: "Juliana Castro", phone: "(41) 99903-4418", vehicle: "Fiat Pulse 2023", plate: "ZXC8L34", since: iso(-4) },
-  ];
-
-  const orders: Order[] = [
-    { id: "o1", code: "OS-2026-041", customerId: "c1", customerName: "Carlos Menezes", vehicle: "Honda Civic 2019", plate: "BEA1D23", wheels: 4, serviceId: "revitalizacao", stage: 6, status: "em_andamento", value: 1400, tech: "Robson", createdAt: iso(-2), dueAt: iso(2), notes: "Cor grafite fosco" },
-    { id: "o2", code: "OS-2026-042", customerId: "c3", customerName: "Rodrigo Alves", vehicle: "VW Golf GTI 2018", plate: "AQK2F19", wheels: 2, serviceId: "diamantacao", stage: 8, status: "em_andamento", value: 560, tech: "Matheus", createdAt: iso(-3), dueAt: iso(1) },
-    { id: "o3", code: "OS-2026-043", customerId: "c2", customerName: "Fernanda Lima", vehicle: "Jeep Compass 2021", plate: "RTC4E88", wheels: 1, serviceId: "conserto", stage: 3, status: "em_andamento", value: 160, tech: "Luiz Jr.", createdAt: iso(-1), dueAt: iso(1), notes: "Empeno no aro dianteiro direito" },
-    { id: "o4", code: "OS-2026-039", customerId: "c5", customerName: "Bruno Tavares", vehicle: "BMW 320i 2022", plate: "LKD9H07", wheels: 4, serviceId: "revitalizacao", stage: 10, status: "pronto", value: 1600, tech: "Robson", createdAt: iso(-5), dueAt: iso(0) },
-    { id: "o5", code: "OS-2026-044", customerId: "c7", customerName: "Marcelo Nunes", vehicle: "Audi A3 2021", plate: "NBR6K12", wheels: 4, serviceId: "pintura", stage: 1, status: "aguardando", value: 800, tech: "André", createdAt: iso(0), dueAt: iso(3), notes: "Aguardando aprovação da cor" },
-    { id: "o6", code: "OS-2026-045", customerId: "c8", customerName: "Juliana Castro", vehicle: "Fiat Pulse 2023", plate: "ZXC8L34", wheels: 2, serviceId: "conserto", stage: 1, status: "aguardando", value: 240, tech: "Matheus", createdAt: iso(0), dueAt: iso(2) },
-    { id: "o7", code: "OS-2026-036", customerId: "c4", customerName: "Patrícia Souza", vehicle: "Toyota Corolla 2020", plate: "PWM7G40", wheels: 4, serviceId: "revitalizacao", stage: 10, status: "entregue", value: 1400, tech: "Robson", createdAt: iso(-10), dueAt: iso(-6) },
-    { id: "o8", code: "OS-2026-034", customerId: "c6", customerName: "Aline Ferreira", vehicle: "Hyundai HB20 2019", plate: "FGT3J55", wheels: 1, serviceId: "diamantacao", stage: 10, status: "entregue", value: 280, tech: "Matheus", createdAt: iso(-14), dueAt: iso(-11) },
-    { id: "o9", code: "OS-2026-030", customerId: "c1", customerName: "Carlos Menezes", vehicle: "Honda Civic 2019", plate: "BEA1D23", wheels: 4, serviceId: "montagem", stage: 10, status: "entregue", value: 160, tech: "André", createdAt: iso(-22), dueAt: iso(-22) },
-    { id: "o10", code: "OS-2026-028", customerId: "c3", customerName: "Rodrigo Alves", vehicle: "VW Golf GTI 2018", plate: "AQK2F19", wheels: 4, serviceId: "pintura", stage: 10, status: "entregue", value: 800, tech: "Robson", createdAt: iso(-26), dueAt: iso(-22) },
-  ];
-
-  const appointments: Appointment[] = [
-    { id: "a1", customerName: "Gustavo Reis", phone: "(41) 99123-0091", vehicle: "Chevrolet Onix 2022", serviceId: "conserto", date: ymd(0), time: "09:00", status: "confirmado", createdAt: iso(-1), source: "site" },
-    { id: "a2", customerName: "Larissa Pinto", phone: "(41) 99880-1145", vehicle: "Renault Kwid 2021", serviceId: "revitalizacao", date: ymd(0), time: "11:00", status: "confirmado", createdAt: iso(-1), source: "site" },
-    { id: "a3", customerName: "Diego Martins", phone: "(41) 98771-2093", vehicle: "Ford Ranger 2020", serviceId: "diamantacao", date: ymd(0), time: "14:30", status: "pendente", createdAt: iso(0), source: "site", notes: "Prefere sábado se possível" },
-    { id: "a4", customerName: "Sônia Braga", phone: "(41) 99640-8812", vehicle: "Nissan Kicks 2023", serviceId: "pintura", date: ymd(1), time: "10:00", status: "confirmado", createdAt: iso(-1), source: "manual" },
-    { id: "a5", customerName: "Henrique Dias", phone: "(41) 99512-7788", vehicle: "Peugeot 208 2019", serviceId: "conserto", date: ymd(1), time: "15:00", status: "pendente", createdAt: iso(0), source: "site" },
-    { id: "a6", customerName: "Camila Rocha", phone: "(41) 98220-4419", vehicle: "Jeep Renegade 2022", serviceId: "revitalizacao", date: ymd(2), time: "09:30", status: "pendente", createdAt: iso(0), source: "site" },
-    { id: "a7", customerName: "Paulo Cardoso", phone: "(41) 99331-5567", vehicle: "Toyota Hilux 2021", serviceId: "montagem", date: ymd(3), time: "16:00", status: "confirmado", createdAt: iso(-2), source: "manual" },
-  ];
-
-  return { customers, orders, appointments, version: 1 };
+  return { customers: [], orders: [], appointments: [], version: VERSION };
 }
+
+export function nextOrderCode(orders: Order[]) {
+  const year = new Date().getFullYear();
+  return `OS-${year}-${String(orders.length + 1).padStart(3, "0")}`;
+}
+export const newId = (p: string) => p + Math.random().toString(36).slice(2, 9);
 
 export function loadShop(): ShopData {
   if (typeof window === "undefined") return seed();
@@ -223,7 +186,7 @@ export function loadShop(): ShopData {
     const raw = localStorage.getItem(KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as ShopData;
-      if (parsed && parsed.version === 1) return parsed;
+      if (parsed && parsed.version === VERSION) return parsed;
     }
   } catch {
     /* ignore */

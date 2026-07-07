@@ -122,23 +122,31 @@ export default function ScheduleSection() {
                     <label className="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-400">
                       Qual serviço você precisa?
                     </label>
-                    <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
-                      {bookable.map((b) => (
-                        <button
-                          type="button"
-                          key={b.id}
-                          onClick={() => setServiceId(b.id)}
-                          className={`rounded-xl border px-3 py-2.5 text-left text-sm transition ${
-                            serviceId === b.id
-                              ? "border-brand bg-brand/15 text-white"
-                              : "border-white/10 bg-white/[0.03] text-slate-300 hover:border-white/25"
-                          }`}
-                        >
-                          {b.name}
-                        </button>
-                      ))}
+                    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+                      {bookable.map((b) => {
+                        const active = serviceId === b.id;
+                        return (
+                          <button
+                            type="button"
+                            key={b.id}
+                            onClick={() => setServiceId(b.id)}
+                            className={`flex items-center gap-3 rounded-xl border px-4 py-3 text-left text-sm transition ${
+                              active
+                                ? "border-brand bg-brand/10 text-white"
+                                : "border-white/10 bg-white/[0.03] text-slate-300 hover:border-white/25"
+                            }`}
+                          >
+                            <span className={`flex h-4 w-4 shrink-0 items-center justify-center rounded-full border ${active ? "border-brand" : "border-white/30"}`}>
+                              {active && <span className="h-2 w-2 rounded-full bg-brand" />}
+                            </span>
+                            <span className="font-medium">{b.name}</span>
+                          </button>
+                        );
+                      })}
                     </div>
-                    <p className="mt-2 text-xs leading-relaxed text-slate-400">{selected.desc}</p>
+                    <p className="mt-3 rounded-xl border border-white/5 bg-white/[0.02] px-4 py-3 text-xs leading-relaxed text-slate-400">
+                      {selected.desc}
+                    </p>
                   </div>
 
                   {/* Data e hora */}
