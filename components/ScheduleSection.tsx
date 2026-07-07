@@ -209,7 +209,7 @@ export default function ScheduleSection() {
                     Confirmar agendamento no WhatsApp →
                   </button>
                   <p className="text-center text-xs text-slate-500">
-                    Valores a partir de {selected.price > 0 ? `R$ ${selected.price}/${selected.unit}` : "sob consulta"} · confirmação humana pelo WhatsApp
+                    Orçamento e confirmação humana pelo WhatsApp, sem compromisso
                   </p>
                 </form>
               )}

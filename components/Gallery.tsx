@@ -4,15 +4,19 @@ import Image from "next/image";
 import Reveal from "./Reveal";
 import BeforeAfter from "./BeforeAfter";
 
-// Galeria sortida: tamanhos variados, sem títulos
+// Galeria sortida: fotos reais da equipe em ação + oficina, tamanhos
+// variados, sem títulos. g10=pintura, g11=torno, g12=montagem.
 const photos = [
-  { src: "/gallery/g1.jpg", cls: "col-span-2 row-span-2 aspect-square" },
-  { src: "/gallery/g3.jpg", cls: "aspect-square" },
-  { src: "/gallery/g4.jpg", cls: "aspect-square" },
-  { src: "/gallery/g8.jpg", cls: "aspect-square" },
+  { src: "/gallery/g10.jpg", cls: "col-span-2 row-span-2 aspect-square" }, // pintura
+  { src: "/gallery/g11.jpg", cls: "aspect-square" }, // torno
+  { src: "/gallery/g12.jpg", cls: "aspect-square" }, // montagem
+  { src: "/gallery/g1.jpg", cls: "aspect-square" },
   { src: "/gallery/g9.jpg", cls: "aspect-square" },
-  { src: "/gallery/g5.jpg", cls: "col-span-2 aspect-[2/1]" },
-  { src: "/gallery/g2.jpg", cls: "col-span-2 aspect-[2/1]" },
+  { src: "/gallery/g5.jpg", cls: "col-span-2 row-span-2 aspect-square" }, // rodas restauradas
+  { src: "/gallery/g2.jpg", cls: "aspect-square" },
+  { src: "/gallery/g8.jpg", cls: "aspect-square" },
+  { src: "/gallery/g4.jpg", cls: "aspect-square" },
+  { src: "/gallery/g3.jpg", cls: "aspect-square" },
 ];
 
 export default function Gallery() {
@@ -45,7 +49,7 @@ export default function Gallery() {
 
         {/* Mosaico sortido, sem títulos */}
         <Reveal
-          className="mt-16 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
+          className="mt-16 grid grid-flow-dense grid-cols-2 gap-3 md:grid-cols-4 md:gap-4"
           childrenStagger
           delay={0.05}
         >
