@@ -5,10 +5,9 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { steps } from "@/lib/site";
 
-// Fotos reais: etapa 1 = roda danificada (foto real), etapa 10 = restaurada (foto real).
-// Etapas 2–9 geradas por IA a partir da foto original, mantendo a mesma roda.
-const stepSrc = (n: number) =>
-  n === 1 ? "/process/etapa-01.webp" : `/process/etapa-${String(n).padStart(2, "0")}.jpg`;
+// Sequência gerada com Nano Banana Pro: a mesma roda, no mesmo ângulo 3/4 e
+// iluminação azul da hero, atravessando as 10 etapas do conserto.
+const stepSrc = (n: number) => `/process/etapa-${String(n).padStart(2, "0")}.jpg`;
 
 export default function ProcessSection() {
   const [active, setActive] = useState(0);
@@ -100,7 +99,6 @@ export default function ProcessSection() {
   }, [go]);
 
   const step = steps[active];
-  const isReal = active === 0 || active === steps.length - 1;
 
   return (
     <section
@@ -121,8 +119,8 @@ export default function ProcessSection() {
           Acompanhe uma roda <span className="text-gradient">renascendo</span>
         </h2>
         <p className="mt-4 max-w-2xl text-slate-300">
-          Esta é uma roda real que chegou na nossa oficina. Navegue pelas etapas e
-          veja a transformação — do jeito que ela chegou até a entrega.
+          Navegue pelas etapas e veja, por dentro da oficina, a transformação
+          completa — de como a roda chega até a entrega impecável.
         </p>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
@@ -142,11 +140,6 @@ export default function ProcessSection() {
                   priority={step.n <= 2}
                 />
               </div>
-
-              {/* Selo foto real / IA */}
-              <span className="absolute left-4 top-4 z-10 rounded-full bg-ink/75 px-3 py-1.5 text-[11px] font-semibold tracking-wide text-white backdrop-blur">
-                {isReal ? "📷 Foto real da oficina" : "Simulação da etapa"}
-              </span>
 
               {/* Setas sobre a imagem */}
               <div className="absolute inset-x-4 top-1/2 z-10 flex -translate-y-1/2 justify-between">
