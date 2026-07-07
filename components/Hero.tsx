@@ -7,15 +7,6 @@ import { site, waLinks } from "@/lib/site";
 
 const WheelCanvas = dynamic(() => import("./WheelCanvas"), { ssr: false });
 
-const badges = [
-  "Desempeno sem usinagem",
-  "1 ano de garantia na pintura",
-  "Gabarito RLL exclusivo",
-  "Diamantação CNC",
-  "32 anos em Curitiba",
-  "Rodas novas em até 18x",
-];
-
 export default function Hero() {
   const rootRef = useRef<HTMLDivElement>(null);
   // Herói mostra a roda no acabamento final (progresso ~1)
@@ -114,20 +105,6 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Marquee de provas */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden border-t border-white/10 bg-ink/60 py-3 backdrop-blur">
-        <div className="marquee-track">
-          {[...badges, ...badges].map((b, i) => (
-            <span
-              key={i}
-              className="mx-6 flex shrink-0 items-center gap-3 text-sm text-slate-300"
-            >
-              <span className="text-brand">◆</span>
-              {b}
-            </span>
-          ))}
-        </div>
-      </div>
     </section>
   );
 }

@@ -11,21 +11,22 @@ export default function Contact() {
   return (
     <section id="contato" className="relative py-24 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
-        <div className="glass overflow-hidden rounded-3xl">
+        <div className="card-light overflow-hidden rounded-3xl">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Info */}
             <div className="p-8 md:p-12">
               <Reveal>
                 <div className="mb-4 flex items-center gap-3">
                   <span className="h-px w-10 bg-brand" />
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-mist">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
                     Fale com a gente
                   </span>
                 </div>
-                <h2 className="font-display text-3xl font-extrabold leading-tight md:text-5xl">
-                  Traga sua roda para <span className="text-gradient">Curitiba</span>
+                <h2 className="font-display text-3xl font-extrabold leading-tight text-ink md:text-5xl">
+                  Traga sua roda para{" "}
+                  <span style={{ color: "var(--color-brand)" }}>Curitiba</span>
                 </h2>
-                <p className="mt-4 max-w-md text-slate-300">
+                <p className="mt-4 max-w-md text-slate-600">
                   Orçamento sem compromisso pelo WhatsApp ou agende um horário. A
                   gente cuida do resto.
                 </p>
@@ -34,37 +35,37 @@ export default function Contact() {
               <Reveal className="mt-8 space-y-5" childrenStagger delay={0.1}>
                 <a
                   href={`tel:+${site.phoneRaw}`}
-                  className="flex items-center gap-4 text-slate-200 transition hover:text-white"
+                  className="flex items-center gap-4 text-slate-700 transition hover:text-ink"
                 >
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/15 text-brand">
                     ☎
                   </span>
                   <span>
-                    <span className="block text-xs uppercase tracking-wide text-slate-400">
+                    <span className="block text-xs uppercase tracking-wide text-slate-500">
                       Telefone
                     </span>
                     <span className="font-medium">{site.phoneDisplay}</span>
                   </span>
                 </a>
 
-                <div className="flex items-center gap-4 text-slate-200">
+                <div className="flex items-center gap-4 text-slate-700">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/15 text-brand">
                     📍
                   </span>
                   <span>
-                    <span className="block text-xs uppercase tracking-wide text-slate-400">
+                    <span className="block text-xs uppercase tracking-wide text-slate-500">
                       Endereço
                     </span>
                     <span className="font-medium">{site.address}</span>
                   </span>
                 </div>
 
-                <div className="flex items-center gap-4 text-slate-200">
+                <div className="flex items-center gap-4 text-slate-700">
                   <span className="flex h-11 w-11 items-center justify-center rounded-full bg-brand/15 text-brand">
                     🕗
                   </span>
                   <span>
-                    <span className="block text-xs uppercase tracking-wide text-slate-400">
+                    <span className="block text-xs uppercase tracking-wide text-slate-500">
                       Horário
                     </span>
                     {site.hours.map((h) => (
@@ -89,7 +90,7 @@ export default function Contact() {
                   href={site.scheduleUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn btn-ghost"
+                  className="btn border border-slate-300 bg-white text-ink hover:border-brand"
                 >
                   Agendar horário
                 </a>
@@ -106,7 +107,7 @@ export default function Contact() {
                     href={s.h}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-white/15 px-4 py-2 text-sm text-slate-300 transition hover:border-brand hover:text-white"
+                    className="rounded-full border border-slate-300 px-4 py-2 text-sm text-slate-600 transition hover:border-brand hover:text-brand"
                   >
                     {s.l}
                   </a>

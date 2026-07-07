@@ -4,8 +4,8 @@ import Image from "next/image";
 import { useRef, useState, useCallback } from "react";
 
 /**
- * Slider antes/depois. "Antes" usa filtro para simular a roda castigada;
- * "Depois" mostra a peça restaurada. Arraste ou toque para comparar.
+ * Slider antes/depois com fotos reais da mesma roda restaurada na oficina.
+ * Arraste ou toque para comparar.
  */
 export default function BeforeAfter() {
   const [pos, setPos] = useState(52);
@@ -34,10 +34,10 @@ export default function BeforeAfter() {
       onTouchStart={(e) => setFromClientX(e.touches[0].clientX)}
       onTouchMove={(e) => setFromClientX(e.touches[0].clientX)}
     >
-      {/* Depois (base) */}
+      {/* Depois (base) — foto real da roda restaurada */}
       <Image
-        src="/brand/roda.png"
-        alt="Roda restaurada"
+        src="/compare/depois.jpg"
+        alt="Roda restaurada pela Rodas de Liga Leve"
         fill
         sizes="(max-width: 768px) 100vw, 50vw"
         className="object-cover"
@@ -46,20 +46,17 @@ export default function BeforeAfter() {
         DEPOIS
       </span>
 
-      {/* Antes (recorte com filtro) */}
+      {/* Antes (recorte) — foto real de como a roda chegou */}
       <div
         className="absolute inset-0 overflow-hidden"
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
         <Image
-          src="/brand/roda.png"
-          alt="Roda antes do conserto"
+          src="/compare/antes.webp"
+          alt="A mesma roda antes do conserto, riscada e oxidada"
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover"
-          style={{
-            filter: "grayscale(1) brightness(0.55) contrast(1.25) sepia(0.25)",
-          }}
         />
         <span className="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white">
           ANTES

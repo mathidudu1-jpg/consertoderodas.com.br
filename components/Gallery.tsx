@@ -25,7 +25,7 @@ export default function Gallery() {
           <Reveal>
             <BeforeAfter />
             <p className="mt-3 text-center text-sm text-slate-400">
-              Arraste para comparar ↔
+              Arraste para comparar ↔ — a mesma roda, fotos reais da oficina
             </p>
           </Reveal>
 
