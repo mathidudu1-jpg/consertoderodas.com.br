@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { site, waLinks } from "@/lib/site";
+import { site } from "@/lib/site";
 
 const nav = [
   { label: "Processo", href: "/#processo" },
@@ -60,13 +60,8 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            href={waLinks.orcamento}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary hidden sm:inline-flex"
-          >
-            Orçamento no Zap
+          <a href="/#agendar" className="btn btn-primary hidden sm:inline-flex">
+            Agende seu Horário
           </a>
           <button
             aria-label="Menu"
@@ -93,12 +88,11 @@ export default function Header() {
               </a>
             ))}
             <a
-              href={waLinks.orcamento}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/#agendar"
+              onClick={() => setOpen(false)}
               className="btn btn-primary mt-2 justify-center"
             >
-              Orçamento no WhatsApp
+              Agende seu Horário
             </a>
           </nav>
         </div>

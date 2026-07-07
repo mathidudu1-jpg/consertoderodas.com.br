@@ -6,6 +6,7 @@ import ProcessSection from "@/components/ProcessSection";
 import Services from "@/components/Services";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
+import ScheduleSection from "@/components/ScheduleSection";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import WhatsappFab from "@/components/WhatsappFab";
@@ -51,6 +52,7 @@ export default function Home() {
           </Reveal>
         </section>
 
+        <ScheduleSection />
         <Contact />
       </main>
       <Footer />
