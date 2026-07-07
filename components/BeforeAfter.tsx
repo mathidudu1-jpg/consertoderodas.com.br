@@ -52,7 +52,7 @@ export default function BeforeAfter() {
         style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}
       >
         <Image
-          src="/compare/antes.webp"
+          src="/compare/antes.jpg"
           alt="A mesma roda antes do conserto, riscada e oxidada"
           fill
           sizes="(max-width: 820px) 100vw, 768px"

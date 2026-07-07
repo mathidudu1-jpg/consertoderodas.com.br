@@ -124,15 +124,24 @@ export default function Hero() {
           className="relative hidden items-center justify-center lg:flex"
           style={{ perspective: "1100px" }}
         >
-          <div ref={wheelRef} style={{ transformStyle: "preserve-3d" }}>
+          {/* Backdrop de mesma cor do fundo da imagem (#0a0e17): funde o quadrado
+              escuro da foto no hero, sem borda/corte visível */}
+          <div
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[860px] w-[860px] -translate-x-1/2 -translate-y-1/2"
+            style={{
+              background:
+                "radial-gradient(circle at 50% 50%, #0a0e17 0%, #0a0e17 42%, rgba(10,14,23,0) 72%)",
+            }}
+          />
+          <div ref={wheelRef} className="relative" style={{ transformStyle: "preserve-3d" }}>
             <div
               ref={wheelImgRef}
               className="relative h-[580px] w-[580px] xl:h-[680px] xl:w-[680px]"
               style={{
                 maskImage:
-                  "radial-gradient(ellipse 78% 78% at 50% 48%, black 60%, transparent 92%)",
+                  "radial-gradient(circle at 50% 50%, black 64%, transparent 84%)",
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 78% 78% at 50% 48%, black 60%, transparent 92%)",
+                  "radial-gradient(circle at 50% 50%, black 64%, transparent 84%)",
               }}
             >
               <Image
@@ -141,7 +150,7 @@ export default function Hero() {
                 fill
                 sizes="680px"
                 priority
-                className="object-cover"
+                className="object-contain"
               />
             </div>
           </div>
