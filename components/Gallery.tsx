@@ -6,11 +6,13 @@ import BeforeAfter from "./BeforeAfter";
 
 // Galeria sortida: tamanhos variados, sem títulos
 const photos = [
-  { src: "/gallery/g1.jpg", cls: "col-span-2 row-span-2 aspect-square md:aspect-[4/5]" },
+  { src: "/gallery/g1.jpg", cls: "col-span-2 row-span-2 aspect-square" },
   { src: "/gallery/g3.jpg", cls: "aspect-square" },
   { src: "/gallery/g4.jpg", cls: "aspect-square" },
+  { src: "/gallery/g8.jpg", cls: "aspect-square" },
+  { src: "/gallery/g9.jpg", cls: "aspect-square" },
   { src: "/gallery/g5.jpg", cls: "col-span-2 aspect-[2/1]" },
-  { src: "/gallery/g2.jpg", cls: "col-span-2 row-span-2 aspect-square md:aspect-[4/5]" },
+  { src: "/gallery/g2.jpg", cls: "col-span-2 aspect-[2/1]" },
 ];
 
 export default function Gallery() {
@@ -27,6 +29,10 @@ export default function Gallery() {
           <h2 className="max-w-3xl font-display text-4xl font-extrabold leading-tight text-balance md:text-6xl">
             A diferença que <span className="text-gradient">se vê</span>
           </h2>
+          <p className="mt-4 max-w-2xl text-slate-300">
+            Excelência em conserto e revitalização de rodas de liga leve — há
+            mais de 32 anos fazendo parte da sua história.
+          </p>
         </Reveal>
 
         {/* Comparador em destaque: quadrado completo, alta resolução */}

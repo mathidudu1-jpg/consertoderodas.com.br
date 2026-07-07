@@ -2,6 +2,7 @@
 
 import { testimonials } from "@/lib/site";
 import Reveal from "./Reveal";
+import GoogleCard from "./GoogleCard";
 
 function Stars() {
   return (
@@ -18,15 +19,24 @@ export default function Testimonials() {
     <section className="section-light relative overflow-hidden py-24 md:py-28">
       <div className="mx-auto max-w-7xl px-5 md:px-10">
         <Reveal>
-          <div className="mb-4 flex items-center gap-3">
-            <span className="h-px w-10 bg-brand" />
-            <span className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
-              Quem confia
-            </span>
+          <div className="flex flex-wrap items-end justify-between gap-8">
+            <div>
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-10 bg-brand" />
+                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
+                  Quem confia
+                </span>
+              </div>
+              <h2 className="max-w-2xl font-display text-4xl font-extrabold leading-tight text-balance text-ink md:text-6xl">
+                Nota <span className="text-gradient">5,0</span> no Google — de gente de verdade
+              </h2>
+              <p className="mt-4 max-w-xl text-slate-600">
+                Há mais de 32 anos fazendo parte da história de milhares de
+                motoristas de Curitiba — com 100% de satisfação garantida.
+              </p>
+            </div>
+            <GoogleCard className="w-full max-w-sm" />
           </div>
-          <h2 className="max-w-3xl font-display text-4xl font-extrabold leading-tight text-balance text-ink md:text-6xl">
-            Nota <span className="text-gradient">5,0</span> no Google — de gente de verdade
-          </h2>
         </Reveal>
 
         <Reveal

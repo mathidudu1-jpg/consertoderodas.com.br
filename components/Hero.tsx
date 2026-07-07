@@ -130,9 +130,9 @@ export default function Hero() {
               className="relative h-[520px] w-[520px] xl:h-[600px] xl:w-[600px]"
               style={{
                 maskImage:
-                  "radial-gradient(ellipse 72% 72% at 50% 50%, black 52%, transparent 76%)",
+                  "radial-gradient(ellipse 78% 78% at 50% 48%, black 60%, transparent 92%)",
                 WebkitMaskImage:
-                  "radial-gradient(ellipse 72% 72% at 50% 50%, black 52%, transparent 76%)",
+                  "radial-gradient(ellipse 78% 78% at 50% 48%, black 60%, transparent 92%)",
               }}
             >
               <Image

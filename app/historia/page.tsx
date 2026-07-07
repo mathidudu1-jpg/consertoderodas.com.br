@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsappFab from "@/components/WhatsappFab";
 import Reveal from "@/components/Reveal";
+import GoogleCard from "@/components/GoogleCard";
 import { site, timeline, waLinks } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -34,11 +35,50 @@ export default function HistoriaPage() {
                 <span className="text-gradient">amor e dedicação</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
-                Em {site.since}, {site.founders} transformaram um sonho em
-                realidade no coração do bairro Xaxim. Hoje, a Rodas de Liga Leve
-                é a maior referência em conserto e revitalização de rodas de
-                Curitiba — com mais de 50.000 rodas restauradas.
+                Excelência em conserto e revitalização de rodas de liga leve.
+                Uma tradição familiar construída com amor, dedicação e
+                compromisso — há mais de {site.years} anos fazendo parte da sua
+                história.
               </p>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* Os fundadores */}
+        <section className="section-light py-24 md:py-28">
+          <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 px-5 md:grid-cols-2 md:px-10">
+            <Reveal>
+              <Image
+                src="/historia/fundadores.jpg"
+                alt="Luiz e Olga Witkovski, fundadores da Rodas de Liga Leve"
+                width={900}
+                height={900}
+                className="mx-auto w-full max-w-md"
+              />
+            </Reveal>
+            <Reveal delay={0.08}>
+              <div className="mb-4 flex items-center gap-3">
+                <span className="h-px w-10 bg-brand" />
+                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-brand-700">
+                  Os fundadores
+                </span>
+              </div>
+              <h2 className="font-display text-3xl font-extrabold leading-tight text-ink md:text-5xl">
+                Luiz e Olga <span className="text-gradient">Witkovski</span>
+              </h2>
+              <div className="mt-5 space-y-4 text-slate-600">
+                <p>
+                  Em {site.since}, Luiz e Olga Witkovski transformaram um sonho
+                  em realidade no coração do bairro Xaxim, fundando a empresa
+                  Rodas de Liga Leve.
+                </p>
+                <p>
+                  O que começou como uma pequena oficina de família virou a
+                  maior referência em conserto de rodas de Curitiba — mais de
+                  50.000 rodas restauradas, uma geração passando o ofício para
+                  a outra, e o mesmo cuidado de sempre em cada peça.
+                </p>
+              </div>
             </Reveal>
           </div>
         </section>
@@ -62,6 +102,36 @@ export default function HistoriaPage() {
                 </div>
               </div>
             </Reveal>
+
+            {/* Ontem e hoje */}
+            <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+              <Reveal>
+                <Image
+                  src="/historia/torno-ontem-hoje.jpg"
+                  alt="Luiz no primeiro torno da oficina, rasgando para o torno CNC atual"
+                  width={1100}
+                  height={846}
+                  className="w-full rounded-3xl border border-white/10"
+                />
+                <p className="mt-3 text-sm text-slate-400">
+                  Do primeiro torno ao CNC de hoje — a precisão é a mesma desde{" "}
+                  {site.since}.
+                </p>
+              </Reveal>
+              <Reveal delay={0.08}>
+                <Image
+                  src="/historia/fachada.jpg"
+                  alt="Fachada atual da Rodas de Liga Leve no Xaxim"
+                  width={1100}
+                  height={1126}
+                  className="w-full rounded-3xl border border-white/10"
+                />
+                <p className="mt-3 text-sm text-slate-400">
+                  Nossa casa hoje: revitalização e vendas de rodas na Rua Omar
+                  Raymundo Picheth, 269 — Xaxim.
+                </p>
+              </Reveal>
+            </div>
           </div>
         </section>
 
@@ -136,20 +206,9 @@ export default function HistoriaPage() {
                 </p>
               </Reveal>
               <Reveal delay={0.16}>
-                <div className="flex items-center gap-4">
-                  <Image
-                    src="/brand/5-estrelas.png"
-                    alt="Avaliação 5 estrelas no Google"
-                    width={72}
-                    height={72}
-                    className="h-16 w-16 object-contain"
-                  />
-                  <div className="font-display text-5xl font-extrabold text-white">
-                    5,0<span className="text-brand">★</span>
-                  </div>
-                </div>
-                <p className="mt-2 text-slate-400">
-                  a confiança de Curitiba, construída peça por peça, de pai para
+                <GoogleCard />
+                <p className="mt-3 text-sm text-slate-400">
+                  A confiança de Curitiba, construída peça por peça, de pai para
                   filho.
                 </p>
               </Reveal>
