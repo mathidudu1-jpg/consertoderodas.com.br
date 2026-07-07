@@ -124,8 +124,8 @@ export default function ProcessSection() {
         </p>
 
         <div className="mt-12 grid grid-cols-1 items-center gap-10 lg:grid-cols-2">
-          {/* Imagem da etapa */}
-          <div className="relative">
+          {/* Imagem da etapa (direita no desktop, topo no mobile) */}
+          <div className="relative order-1 lg:order-2">
             <div
               ref={imgWrapRef}
               className="relative aspect-square w-full overflow-hidden rounded-3xl border border-white/10 bg-ink-800"
@@ -167,8 +167,8 @@ export default function ProcessSection() {
             </div>
           </div>
 
-          {/* Texto da etapa */}
-          <div>
+          {/* Texto e controles 1–10 (esquerda no desktop) */}
+          <div className="order-2 lg:order-1">
             <div ref={textRef}>
               <div className="flex items-baseline gap-4">
                 <span className="font-display text-6xl font-extrabold text-brand md:text-8xl">

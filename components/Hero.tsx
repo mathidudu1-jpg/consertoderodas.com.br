@@ -127,7 +127,7 @@ export default function Hero() {
           <div ref={wheelRef} style={{ transformStyle: "preserve-3d" }}>
             <div
               ref={wheelImgRef}
-              className="relative h-[520px] w-[520px] xl:h-[600px] xl:w-[600px]"
+              className="relative h-[580px] w-[580px] xl:h-[680px] xl:w-[680px]"
               style={{
                 maskImage:
                   "radial-gradient(ellipse 78% 78% at 50% 48%, black 60%, transparent 92%)",
@@ -137,9 +137,9 @@ export default function Hero() {
             >
               <Image
                 src="/brand/hero-wheel.jpg"
-                alt="Roda de liga leve restaurada pela Rodas de Liga Leve"
+                alt="Roda esportiva de liga leve com a logo RLL na calota"
                 fill
-                sizes="600px"
+                sizes="680px"
                 priority
                 className="object-cover"
               />
