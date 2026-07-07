@@ -1,0 +1,31 @@
+{
+  "name": "consertoderodas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Rodas de Liga Leve — Conserto de Rodas de Curitiba. Site cinematográfico com Three.js + GSAP.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.0.6",
+    "@react-three/fiber": "^9.1.2",
+    "gsap": "^3.13.0",
+    "lenis": "^1.1.20",
+    "next": "^15.3.1",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.1.4",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.1.0",
+    "@types/react-dom": "^19.1.0",
+    "@types/three": "^0.180.0",
+    "tailwindcss": "^4.1.4",
+    "typescript": "^5.8.3"
+  }
+}
