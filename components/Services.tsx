@@ -1,63 +1,51 @@
 "use client";
 
-import { useRef } from "react";
 import { services, waLinks } from "@/lib/site";
 import Reveal from "./Reveal";
 
-function Card({ s }: { s: (typeof services)[number] }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const onMove = (e: React.MouseEvent) => {
-    const el = ref.current;
-    if (!el) return;
-    const r = el.getBoundingClientRect();
-    const px = (e.clientX - r.left) / r.width - 0.5;
-    const py = (e.clientY - r.top) / r.height - 0.5;
-    el.style.transform = `perspective(900px) rotateY(${px * 5}deg) rotateX(${-py * 5}deg) translateY(-4px)`;
-    el.style.setProperty("--mx", `${(px + 0.5) * 100}%`);
-    el.style.setProperty("--my", `${(py + 0.5) * 100}%`);
-  };
-  const onLeave = () => {
-    const el = ref.current;
-    if (el) el.style.transform = "";
-  };
-
+function Row({ s, i }: { s: (typeof services)[number]; i: number }) {
   return (
-    <div
-      ref={ref}
-      onMouseMove={onMove}
-      onMouseLeave={onLeave}
-      className={`card-light group relative overflow-hidden rounded-3xl p-7 transition-transform duration-200 will-change-transform ${
-        s.featured ? "md:col-span-2" : ""
-      }`}
-      style={{ transformStyle: "preserve-3d" }}
+    <a
+      href={waLinks.orcamento}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group grid grid-cols-[auto_1fr] items-baseline gap-x-6 gap-y-3 border-b border-slate-200 py-9 transition-colors duration-300 first:border-t hover:bg-white md:grid-cols-[80px_1.1fr_1.6fr_auto] md:items-center md:gap-x-10 md:px-6"
     >
-      {/* Brilho azul sutil que segue o mouse */}
-      <div
-        className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-        style={{
-          background:
-            "radial-gradient(320px circle at var(--mx,50%) var(--my,50%), rgba(15,87,251,0.07), transparent 60%)",
-        }}
-      />
-      {s.featured && (
-        <span className="mb-4 inline-block rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
-          Mais procurado
-        </span>
-      )}
-      <h3 className="font-display text-2xl font-bold text-ink">{s.title}</h3>
-      <p className="mt-3 max-w-xl text-sm leading-relaxed text-slate-600">{s.desc}</p>
-      <ul className="mt-5 flex flex-wrap gap-2">
-        {s.items.map((it) => (
-          <li
-            key={it}
-            className="rounded-full border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-medium text-slate-700"
-          >
-            {it}
-          </li>
-        ))}
-      </ul>
-    </div>
+      {/* Número */}
+      <span className="font-display text-sm font-bold text-slate-400 transition-colors group-hover:text-brand md:text-base">
+        {String(i + 1).padStart(2, "0")}
+      </span>
+
+      {/* Título */}
+      <h3 className="font-display text-2xl font-bold text-ink transition-transform duration-300 group-hover:translate-x-1 md:text-3xl">
+        {s.title}
+        {s.featured && (
+          <span className="ml-3 inline-block -translate-y-1 rounded-full bg-brand px-2.5 py-0.5 align-middle text-[11px] font-semibold tracking-wide text-white">
+            mais procurado
+          </span>
+        )}
+      </h3>
+
+      {/* Descrição + chips */}
+      <div className="col-span-2 md:col-span-1">
+        <p className="text-sm leading-relaxed text-slate-600">{s.desc}</p>
+        <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+          {s.items.map((it) => (
+            <li key={it} className="text-xs font-medium text-slate-500">
+              ✓ {it}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Seta */}
+      <span
+        aria-hidden
+        className="hidden h-11 w-11 items-center justify-center rounded-full border border-slate-300 text-lg text-slate-400 transition-all duration-300 group-hover:border-brand group-hover:bg-brand group-hover:text-white md:flex"
+      >
+        →
+      </span>
+    </a>
   );
 }
 
@@ -72,16 +60,22 @@ export default function Services() {
               O que fazemos
             </span>
           </div>
-          <h2 className="max-w-3xl font-display text-4xl font-extrabold leading-tight text-balance text-ink md:text-6xl">
-            Tudo para a sua roda em <span className="text-gradient">um só lugar</span>
-          </h2>
+          <div className="flex flex-wrap items-end justify-between gap-6">
+            <h2 className="max-w-2xl font-display text-4xl font-extrabold leading-tight text-balance text-ink md:text-6xl">
+              Tudo para a sua roda em <span className="text-gradient">um só lugar</span>
+            </h2>
+            <p className="max-w-sm pb-2 text-sm leading-relaxed text-slate-500">
+              Clique em qualquer serviço para pedir um orçamento direto no
+              WhatsApp — resposta no mesmo dia útil.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="mt-12 grid grid-cols-1 gap-5 md:grid-cols-2">
-          {services.map((s) => (
-            <Card key={s.title} s={s} />
+        <Reveal className="mt-14" childrenStagger stagger={0.1}>
+          {services.map((s, i) => (
+            <Row key={s.title} s={s} i={i} />
           ))}
-        </div>
+        </Reveal>
 
         <Reveal className="mt-12 flex flex-wrap items-center gap-4" delay={0.1}>
           <a

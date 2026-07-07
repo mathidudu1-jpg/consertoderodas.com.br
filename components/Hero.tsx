@@ -1,21 +1,21 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
-import dynamic from "next/dynamic";
 import { gsap } from "gsap";
 import { site, waLinks } from "@/lib/site";
 
-const WheelCanvas = dynamic(() => import("./WheelCanvas"), { ssr: false });
-
 export default function Hero() {
   const rootRef = useRef<HTMLDivElement>(null);
-  // Herói mostra a roda no acabamento final (progresso ~1)
-  const progressRef = useRef(1);
+  const wheelRef = useRef<HTMLDivElement>(null);
+  const wheelImgRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
+
     const ctx = gsap.context(() => {
+      // Entrada
       const tl = gsap.timeline({ delay: 0.15 });
       tl.from(".hero-line", {
         yPercent: 120,
@@ -35,11 +35,36 @@ export default function Hero() {
           "-=0.5"
         )
         .from(
-          ".hero-wheel",
-          { opacity: 0, scale: 0.85, duration: 1.4, ease: "expo.out" },
+          wheelRef.current,
+          { opacity: 0, scale: 0.88, x: 60, duration: 1.5, ease: "expo.out" },
           "-=1.1"
         );
+
+      // Flutuação suave contínua
+      gsap.to(wheelImgRef.current, {
+        y: 16,
+        duration: 3.2,
+        yoyo: true,
+        repeat: -1,
+        ease: "sine.inOut",
+      });
+
+      // Parallax 3D com o mouse
+      const onMove = (e: MouseEvent) => {
+        const px = e.clientX / window.innerWidth - 0.5;
+        const py = e.clientY / window.innerHeight - 0.5;
+        gsap.to(wheelRef.current, {
+          rotateY: px * 14,
+          rotateX: -py * 10,
+          x: px * 26,
+          duration: 0.9,
+          ease: "power2.out",
+        });
+      };
+      window.addEventListener("mousemove", onMove);
+      return () => window.removeEventListener("mousemove", onMove);
     }, rootRef);
+
     return () => ctx.revert();
   }, []);
 
@@ -50,24 +75,14 @@ export default function Hero() {
       className="relative min-h-[100svh] w-full overflow-hidden tech-grid"
     >
       {/* Glow e vinheta */}
-      <div className="pointer-events-none absolute inset-0 glow-brand" />
+      <div className="pointer-events-none absolute inset-0 glow-brand opacity-60" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink" />
 
-      {/* Roda 3D — metade direita no desktop, fundo no mobile */}
-      <div className="hero-wheel absolute inset-0 md:left-[38%]">
-        <WheelCanvas
-          progressRef={progressRef}
-          spin={0.28}
-          interactive
-          tilt={[-0.16, -0.4]}
-        />
-      </div>
-
-      <div className="relative mx-auto flex min-h-[100svh] max-w-7xl flex-col justify-center px-5 pt-24 md:px-10">
+      <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pt-24 md:px-10 lg:grid-cols-2">
         <div className="max-w-2xl">
           <div className="hero-sub mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-mist backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-brand" />
-            {site.city} · desde {site.since} · {site.years} anos
+            {site.city} · desde {site.since} · mais de {site.years} anos
           </div>
 
           <h1 className="font-display text-[13vw] font-extrabold leading-[0.92] sm:text-6xl md:text-7xl">
@@ -88,7 +103,7 @@ export default function Hero() {
             <strong className="text-white">1 ano de garantia na pintura</strong>.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+          <div className="mt-9 flex flex-wrap items-center gap-3 pb-10">
             <a
               href={waLinks.orcamento}
               target="_blank"
@@ -103,8 +118,35 @@ export default function Hero() {
             </a>
           </div>
         </div>
-      </div>
 
+        {/* Roda realista com parallax 3D */}
+        <div
+          className="relative hidden items-center justify-center lg:flex"
+          style={{ perspective: "1100px" }}
+        >
+          <div ref={wheelRef} style={{ transformStyle: "preserve-3d" }}>
+            <div
+              ref={wheelImgRef}
+              className="relative h-[520px] w-[520px] xl:h-[600px] xl:w-[600px]"
+              style={{
+                maskImage:
+                  "radial-gradient(ellipse 72% 72% at 50% 50%, black 52%, transparent 76%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 72% 72% at 50% 50%, black 52%, transparent 76%)",
+              }}
+            >
+              <Image
+                src="/brand/hero-wheel.jpg"
+                alt="Roda de liga leve restaurada pela Rodas de Liga Leve"
+                fill
+                sizes="600px"
+                priority
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
   );
 }

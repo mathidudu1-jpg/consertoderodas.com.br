@@ -5,8 +5,9 @@ export const site = {
   shortName: "RLL",
   legalName: "Conserto Rodas de Liga Leve",
   tagline: "Há mais de 32 anos fazendo parte da sua história",
-  since: 1992,
+  since: 1993,
   years: 32,
+  founders: "Luiz e Olga Witkovski",
   city: "Curitiba",
   state: "PR",
   address: "Rua Omar Raymundo Picheth, 269 – Xaxim, Curitiba – PR, 81810-150",
@@ -176,6 +177,35 @@ export const testimonials: Testimonial[] = [
     text: "Atendimento do Matheus foi excelente, tirou todas as dúvidas. Pintura ficou espetacular, com garantia.",
   },
 ];
+
+// Marcos reais do site oficial (Sobre Nós)
+export const timeline = [
+  {
+    year: "1993",
+    title: "O começo de tudo",
+    desc: "Luiz e Olga Witkovski transformam um sonho em realidade no coração do bairro Xaxim, fundando a Rodas de Liga Leve.",
+  },
+  {
+    year: "1995",
+    title: "Reconhecimento",
+    desc: "A oficina ganha o mercado de Curitiba com especialistas qualificados e tecnologia à frente do seu tempo.",
+  },
+  {
+    year: "2004",
+    title: "Diamantação",
+    desc: "Chega a tecnologia de corte diamantado, com acabamento impecável que virou referência na cidade.",
+  },
+  {
+    year: "2015",
+    title: "Expansão",
+    desc: "A estrutura cresce para atender melhor — sem abrir mão do padrão de qualidade de sempre.",
+  },
+  {
+    year: "2024",
+    title: "32 anos de excelência",
+    desc: "Mais de 50.000 rodas restauradas e uma tradição familiar que segue de pai para filho.",
+  },
+] as const;
 
 export const gallery = [
   { src: "/gallery/g6.jpg", label: "Nossa história — anos 90", tall: false },

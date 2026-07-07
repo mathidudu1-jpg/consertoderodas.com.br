@@ -4,7 +4,6 @@ import Hero from "@/components/Hero";
 import Stats from "@/components/Stats";
 import ProcessSection from "@/components/ProcessSection";
 import Services from "@/components/Services";
-import History from "@/components/History";
 import Gallery from "@/components/Gallery";
 import Testimonials from "@/components/Testimonials";
 import Contact from "@/components/Contact";
@@ -22,7 +21,6 @@ export default function Home() {
         <Stats />
         <ProcessSection />
         <Services />
-        <History />
         <Gallery />
         <Testimonials />
 

@@ -23,7 +23,7 @@ export default function BeforeAfter() {
   return (
     <div
       ref={wrap}
-      className="relative aspect-[4/3] w-full cursor-ew-resize select-none overflow-hidden rounded-3xl border border-white/10"
+      className="relative aspect-square w-full cursor-ew-resize select-none overflow-hidden rounded-3xl border border-white/10"
       onMouseDown={(e) => {
         dragging.current = true;
         setFromClientX(e.clientX);
@@ -39,7 +39,7 @@ export default function BeforeAfter() {
         src="/compare/depois.jpg"
         alt="Roda restaurada pela Rodas de Liga Leve"
         fill
-        sizes="(max-width: 768px) 100vw, 50vw"
+        sizes="(max-width: 820px) 100vw, 768px"
         className="object-cover"
       />
       <span className="absolute right-4 top-4 rounded-full bg-brand px-3 py-1 text-xs font-semibold text-white">
@@ -55,7 +55,7 @@ export default function BeforeAfter() {
           src="/compare/antes.webp"
           alt="A mesma roda antes do conserto, riscada e oxidada"
           fill
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 820px) 100vw, 768px"
           className="object-cover"
         />
         <span className="absolute left-4 top-4 rounded-full bg-black/70 px-3 py-1 text-xs font-semibold text-white">

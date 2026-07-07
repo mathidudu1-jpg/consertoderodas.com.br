@@ -5,11 +5,11 @@ import { useEffect, useState } from "react";
 import { site, waLinks } from "@/lib/site";
 
 const nav = [
-  { label: "Processo", href: "#processo" },
-  { label: "Serviços", href: "#servicos" },
-  { label: "História", href: "#historia" },
-  { label: "Galeria", href: "#galeria" },
-  { label: "Contato", href: "#contato" },
+  { label: "Processo", href: "/#processo" },
+  { label: "Serviços", href: "/#servicos" },
+  { label: "Galeria", href: "/#galeria" },
+  { label: "História", href: "/historia" },
+  { label: "Contato", href: "/#contato" },
 ];
 
 export default function Header() {
@@ -32,7 +32,7 @@ export default function Header() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3.5 md:px-10">
-        <a href="#top" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <Image
             src="/brand/logo-white.png"
             alt="Rodas de Liga Leve"
