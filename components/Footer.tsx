@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { site } from "@/lib/site";
+import DevCredit from "./DevCredit";
 
 export default function Footer() {
   return (
@@ -48,9 +49,7 @@ export default function Footer() {
 
         <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t border-white/10 pt-6 text-xs text-slate-500 md:flex-row">
           <p>© {site.since}–2026 {site.legalName}. Todos os direitos reservados.</p>
-          <p>
-            Feito com Next.js · Three.js · GSAP — deploy na Vercel
-          </p>
+          <DevCredit />
         </div>
       </div>
     </footer>

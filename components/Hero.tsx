@@ -72,20 +72,20 @@ export default function Hero() {
     <section
       id="top"
       ref={rootRef}
-      className="relative min-h-[88svh] w-full overflow-hidden tech-grid"
+      className="relative min-h-[100svh] w-full overflow-hidden tech-grid lg:min-h-[88svh]"
     >
       {/* Glow e vinheta */}
       <div className="pointer-events-none absolute inset-0 glow-brand opacity-60" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink" />
 
-      <div className="relative mx-auto grid min-h-[88svh] max-w-7xl grid-cols-1 items-center gap-6 px-5 pb-12 pt-24 md:px-10 lg:grid-cols-2">
+      <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-2 px-5 pb-8 pt-24 md:px-10 lg:min-h-[88svh] lg:gap-6 lg:pb-12">
         <div className="max-w-2xl">
           <div className="hero-sub mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-mist backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-brand" />
             {site.city} · desde {site.since} · mais de {site.years} anos
           </div>
 
-          <h1 className="font-display text-[13vw] font-extrabold leading-[0.92] sm:text-6xl md:text-7xl">
+          <h1 className="font-display text-[11.5vw] font-extrabold leading-[0.92] sm:text-6xl md:text-7xl">
             <span className="hero-line block overflow-hidden">
               <span className="block">Sua roda</span>
             </span>
@@ -97,13 +97,13 @@ export default function Hero() {
             </span>
           </h1>
 
-          <p className="hero-sub mt-6 max-w-lg text-base leading-relaxed text-slate-300 md:text-lg">
+          <p className="hero-sub mt-5 max-w-lg text-sm leading-relaxed text-slate-300 sm:text-base md:text-lg">
             A maior referência em conserto de rodas de liga leve de Curitiba.
             Desempeno sem usinagem, revitalização completa e diamantação — com{" "}
             <strong className="text-white">1 ano de garantia na pintura</strong>.
           </p>
 
-          <div className="mt-9 flex flex-wrap items-center gap-3 pb-10">
+          <div className="mt-7 flex flex-wrap items-center gap-3 lg:mt-9 lg:pb-10">
             <a
               href={waLinks.orcamento}
               target="_blank"
@@ -119,15 +119,15 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Roda realista com parallax 3D */}
+        {/* Roda realista com parallax 3D (visível também no mobile) */}
         <div
-          className="relative hidden items-center justify-center lg:flex"
+          className="relative flex items-center justify-center"
           style={{ perspective: "1100px" }}
         >
           {/* Backdrop de mesma cor do fundo da imagem (#0a0e17): funde o quadrado
               escuro da foto no hero, sem borda/corte visível */}
           <div
-            className="pointer-events-none absolute left-1/2 top-1/2 h-[860px] w-[860px] -translate-x-1/2 -translate-y-1/2"
+            className="pointer-events-none absolute left-1/2 top-1/2 h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 sm:h-[560px] sm:w-[560px] lg:h-[860px] lg:w-[860px]"
             style={{
               background:
                 "radial-gradient(circle at 50% 50%, #0a0e17 0%, #0a0e17 42%, rgba(10,14,23,0) 72%)",
@@ -136,7 +136,7 @@ export default function Hero() {
           <div ref={wheelRef} className="relative" style={{ transformStyle: "preserve-3d" }}>
             <div
               ref={wheelImgRef}
-              className="relative h-[580px] w-[580px] xl:h-[680px] xl:w-[680px]"
+              className="relative h-[270px] w-[270px] sm:h-[400px] sm:w-[400px] lg:h-[580px] lg:w-[580px] xl:h-[680px] xl:w-[680px]"
               style={{
                 maskImage:
                   "radial-gradient(circle at 50% 50%, black 64%, transparent 84%)",
@@ -148,7 +148,7 @@ export default function Hero() {
                 src="/brand/hero-wheel.jpg"
                 alt="Roda esportiva de liga leve com a logo RLL na calota"
                 fill
-                sizes="680px"
+                sizes="(max-width: 1024px) 400px, 680px"
                 priority
                 className="object-contain"
               />
