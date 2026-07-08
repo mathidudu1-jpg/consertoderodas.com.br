@@ -239,6 +239,13 @@ export function addAppointment(
 export const brl = (n: number) =>
   n.toLocaleString("pt-BR", { style: "currency", currency: "BRL" });
 
+// URL de WhatsApp a partir de um telefone livre + texto
+export function waUrl(phone: string, text: string) {
+  const digits = (phone || "").replace(/\D/g, "");
+  const full = digits.startsWith("55") ? digits : "55" + digits;
+  return `https://api.whatsapp.com/send?phone=${full}&text=${encodeURIComponent(text)}`;
+}
+
 // Monta a URL do WhatsApp com o resumo do agendamento
 export function whatsappFromSchedule(a: {
   name: string;
