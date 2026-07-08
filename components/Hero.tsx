@@ -78,7 +78,7 @@ export default function Hero() {
       <div className="pointer-events-none absolute inset-0 glow-brand opacity-60" />
       <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-ink/40 via-transparent to-ink" />
 
-      <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-2 px-5 pb-8 pt-24 md:px-10 lg:min-h-[88svh] lg:gap-6 lg:pb-12">
+      <div className="relative mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 items-center gap-2 px-5 pb-8 pt-24 md:px-10 lg:min-h-[88svh] lg:grid-cols-2 lg:gap-6 lg:pb-12">
         <div className="max-w-2xl">
           <div className="hero-sub mb-6 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-1.5 text-xs font-medium text-mist backdrop-blur">
             <span className="h-2 w-2 rounded-full bg-brand" />
