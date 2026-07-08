@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { catalog, addAppointment, whatsappFromSchedule } from "@/lib/shop";
+import { catalog, whatsappFromSchedule } from "@/lib/shop";
 import { site } from "@/lib/site";
 import Reveal from "./Reveal";
 
@@ -34,10 +34,20 @@ export default function ScheduleSection() {
   const selected = bookable.find((b) => b.id === serviceId)!;
   const valid = name.trim() && phone.trim() && date && time;
 
-  function submit(e: React.FormEvent) {
+  async function submit(e: React.FormEvent) {
     e.preventDefault();
     if (!valid) return;
-    addAppointment({ customerName: name, phone, vehicle, serviceId, date, time, notes });
+    // Grava o agendamento no Supabase (cai no painel da oficina em tempo real).
+    // Mesmo se a gravação falhar, seguimos pro WhatsApp para não perder o cliente.
+    try {
+      await fetch("/api/schedule", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ customerName: name, phone, vehicle, serviceId, date, time, notes }),
+      });
+    } catch {
+      /* segue pro WhatsApp mesmo assim */
+    }
     const url = whatsappFromSchedule({
       name, phone, vehicle, serviceName: selected.name, date, time, notes,
     });
