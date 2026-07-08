@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Sora } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 import { site } from "@/lib/site";
 
@@ -33,6 +35,9 @@ export const metadata: Metadata = {
     "roda empenada",
   ],
   authors: [{ name: site.legalName }],
+  creator: site.legalName,
+  alternates: { canonical: "/" },
+  category: "automotive",
   openGraph: {
     title,
     description,
@@ -40,11 +45,13 @@ export const metadata: Metadata = {
     siteName: site.legalName,
     locale: "pt_BR",
     type: "website",
-    images: [{ url: "/brand/logo-mark.png", width: 1024, height: 1024 }],
   },
   twitter: { card: "summary_large_image", title, description },
-  robots: { index: true, follow: true },
-  icons: { icon: "/brand/logo.png" },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large" },
+  },
 };
 
 export const viewport: Viewport = {
@@ -56,9 +63,14 @@ export const viewport: Viewport = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "AutoRepair",
+  "@id": "https://consertoderodas.com.br/#business",
   name: site.legalName,
-  image: "https://consertoderodas.com.br/brand/logo-mark.png",
+  alternateName: "Rodas de Liga Leve",
+  image: "https://consertoderodas.com.br/opengraph-image",
+  logo: "https://consertoderodas.com.br/icon.png",
   telephone: "+55 41 3346-9595",
+  foundingDate: "1993",
+  slogan: "Há mais de 32 anos fazendo parte da sua história",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Rua Omar Raymundo Picheth, 269 – Xaxim",
@@ -67,9 +79,26 @@ const jsonLd = {
     postalCode: "81810-150",
     addressCountry: "BR",
   },
+  geo: { "@type": "GeoCoordinates", latitude: -25.508, longitude: -49.283 },
+  areaServed: { "@type": "City", name: "Curitiba" },
   url: "https://consertoderodas.com.br",
   priceRange: "$$",
-  openingHours: "Mo-Fr 08:00-17:30",
+  currenciesAccepted: "BRL",
+  openingHoursSpecification: [
+    {
+      "@type": "OpeningHoursSpecification",
+      dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      opens: "08:00",
+      closes: "17:30",
+    },
+  ],
+  makesOffer: [
+    "Revitalização completa de rodas",
+    "Conserto e desempeno de rodas",
+    "Diamantação",
+    "Pintura de rodas",
+    "Venda de rodas novas",
+  ].map((s) => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: s } })),
   sameAs: [site.social.instagram, site.social.facebook, site.social.youtube],
 };
 
@@ -86,6 +115,8 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

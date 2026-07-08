@@ -12,6 +12,14 @@ export const metadata: Metadata = {
   title: "Nossa História",
   description:
     "De 1993 até hoje: como Luiz e Olga Witkovski transformaram uma oficina no Xaxim na maior referência em conserto de rodas de liga leve de Curitiba.",
+  alternates: { canonical: "/historia" },
+  openGraph: {
+    title: "Nossa História | Rodas de Liga Leve",
+    description:
+      "De 1993 até hoje: uma tradição familiar em conserto de rodas de liga leve em Curitiba.",
+    url: "https://consertoderodas.com.br/historia",
+    type: "article",
+  },
 };
 
 export default function HistoriaPage() {
